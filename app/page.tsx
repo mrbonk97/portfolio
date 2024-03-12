@@ -1,11 +1,35 @@
-import Link, { LinkProps } from 'next/link';
-
+'use client';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 export default function Home() {
+  const [hov, setHov] = useState(false);
+
   return (
     <main className='h-full bg-[#F3EFE7] flex flex-col items-center justify-center gap-20'>
-      <h1 className='text-8xl font-extrabold text-[#FF3B00] tracking-widest'>안녕하세요!</h1>
+      <div className='overflow-hidden relative w-full h-24 flex items-center justify-center'>
+        <motion.h1
+          className='text-8xl font-extrabold text-[#FF3B00] tracking-widest absolute'
+          animate={
+            hov
+              ? { top: 100 }
+              : {
+                  top: 0,
+                  transition: {
+                    delay: 0.2,
+                  },
+                }
+          }
+        >
+          안녕하세요!
+        </motion.h1>
+      </div>
       <Link href='/project'>
-        <section className='relative text-xl font-semibold h-[200px] w-[200px] spin text-[#FF3B00] hover:text-[#FF3B00]/70 duration-150 cursor-pointer flex items-center justify-center'>
+        <motion.section
+          onMouseEnter={() => setHov(true)}
+          onMouseLeave={() => setHov(false)}
+          className='relative text-xl font-semibold h-[200px] w-[200px] spin text-[#FF3B00]/80 hover:text-[#FF3B00] duration-150 cursor-pointer flex items-center justify-center'
+        >
           <span className='circle rotate-[20deg]'>안</span>
           <span className='circle rotate-[40deg]'>녕</span>
           <span className='circle rotate-[60deg]'>하</span>
@@ -24,10 +48,47 @@ export default function Home() {
           <span className='circle rotate-[320deg]'>보</span>
           <span className='circle rotate-[340deg]'>기</span>
           <span className='circle rotate-[360deg]'>·</span>
-        </section>
+        </motion.section>
       </Link>
-      <h1 className='text-8xl font-extrabold text-[#FF3B00] tracking-wider'>저의 포트폴리오</h1>
-      <h1 className='text-8xl tracking-wider font-extrabold text-[#FF3B00]'>방문에 감사드립니다.</h1>
+      <div className='overflow-hidden relative w-full h-24 flex items-center justify-center'>
+        <motion.h1
+          className='text-8xl font-extrabold text-[#FF3B00] tracking-widest absolute'
+          animate={
+            hov
+              ? {
+                  top: 100,
+                  transition: {
+                    delay: 0.1,
+                  },
+                }
+              : {
+                  top: 0,
+                  transition: {
+                    delay: 0.1,
+                  },
+                }
+          }
+        >
+          저의 포트폴리오
+        </motion.h1>
+      </div>
+      <div className='overflow-hidden relative w-full h-24 flex items-center justify-center'>
+        <motion.h1
+          className='text-8xl font-extrabold text-[#FF3B00] tracking-widest absolute'
+          animate={
+            hov
+              ? {
+                  top: 100,
+                  transition: {
+                    delay: 0.2,
+                  },
+                }
+              : { top: 0 }
+          }
+        >
+          방문에 감사드립니다.
+        </motion.h1>
+      </div>
     </main>
   );
 }
