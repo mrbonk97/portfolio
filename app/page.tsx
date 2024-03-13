@@ -1,9 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export default function Home() {
   const [hov, setHov] = useState(false);
+  const [render, setRender] = useState(false);
+  useEffect(() => setRender(true), []);
+  if (!render) return <main className='h-full bg-[#F3EFE7]'>로딩중</main>;
 
   return (
     <main className='h-full bg-[#F3EFE7] flex flex-col items-center justify-center gap-20'>
