@@ -31,3 +31,15 @@ body,
 .spin {
   animation: spin 10s linear infinite;
 }
+
+.nt {
+  flex-basis: 95px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.nt2 {
+  flex-basis: 50px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
