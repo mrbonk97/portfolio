@@ -6,7 +6,7 @@ export default function Home() {
   const [hov, setHov] = useState(false);
   const [render, setRender] = useState(false);
   useEffect(() => setRender(true), []);
-  if (!render) return <main className='h-full bg-[#F3EFE7]'>로딩중</main>;
+  if (!render) return <main className='h-full bg-neutral-100'>로딩중</main>;
 
   return (
     <main className='h-full bg-[#F3EFE7] flex flex-col items-center justify-center gap-20'>

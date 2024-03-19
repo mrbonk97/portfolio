@@ -43,3 +43,14 @@ body,
   flex-grow: 0;
   flex-shrink: 0;
 }
+
+.flex2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.v-full {
+  height: 100%;
+  width: 100%;
+}

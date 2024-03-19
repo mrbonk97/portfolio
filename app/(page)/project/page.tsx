@@ -1,63 +1,75 @@
 'use client';
-import Card from '@/components/card';
 import Image from 'next/image';
 import { Variants, easeIn, easeInOut, motion, useScroll, useSpring } from 'framer-motion';
-import { inView } from 'framer-motion/dom';
 import { useEffect, useRef, useState } from 'react';
+
+const LeftElement = ({ item }: { item: number }) => {
+  return (
+    <div className='fixed left-0 w-[600px] h-full overflow-hidden z-10 shadow-[rgba(0,0,15,0.5)_10px_5px_20px_0px]'>
+      <motion.div className='v-full' transition={{ duration: 0.6, ease: 'easeInOut' }} animate={{ x: item }}>
+        <div className='absolute v-full flex2 bg-emerald-50'>
+          <Image src='/khnp.svg' alt='project' width={300} height={300} />
+        </div>
+        <div className='absolute v-full flex2 bg-rose-100 ml-[600px] '>
+          <Image src='/our-memory.svg' alt='project' width={300} height={300} />
+        </div>
+        <div className='absolute v-full flex2 bg-blue-100 ml-[1200px]'>
+          <Image src='/cloud-storage.png' alt='project' width={300} height={300} />
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const RightElement = ({ onHover }: { onHover: (item: number) => void }) => {
+  return (
+    <div className='pl-[600px]'>
+      <article className='h-[100vh] flex2 relative' onMouseEnter={() => onHover(0)}>
+        <span className='absolute left-[10%] top-[10%] text-7xl font-bold text-neutral-400'>P. 1</span>
+        <hgroup className='flex flex-col gap-5 font-semibold'>
+          <h1 className='text-7xl font-bold tracking-wide'>한수원 ERP 고도화</h1>
+          <span className='text-2xl mt-2 mb-5 ml-1'>한국수력원자력 경영관리분야 ERP 고도화 프로젝트</span>
+          <h2 className='text-xl ml-1'>업무 : BSC 성과지표 시스템 개발</h2>
+          <h3 className='text-xl ml-1'>기간 : 2023.02.20 ~ 2024.02.26</h3>
+          <h3 className='text-xl ml-1'>규모 : 120명</h3>
+          <h3 className='text-xl ml-1'>스택 : 넥사크로, xUP, Oracle</h3>
+        </hgroup>
+      </article>
+      <article className='h-[100vh] flex2 relative bg-[#8785A2]' onMouseEnter={() => onHover(1)}>
+        <span className='absolute left-[10%] top-[10%] text-7xl font-bold text-neutral-400'>P. 2</span>
+        <hgroup className='flex flex-col gap-5 font-semibold'>
+          <h1 className='text-7xl font-bold tracking-wide'>우만시</h1>
+          <span className='text-2xl mt-2 mb-5 ml-1'>우리가 만난 시간 앱</span>
+          <h2 className='text-xl ml-1'>업무 : 백엔드 개발</h2>
+          <h3 className='text-xl ml-1'>기간 : 2023.02.20 ~ 2024.02.26</h3>
+          <h3 className='text-xl ml-1'>규모 : 40명</h3>
+          <h3 className='text-xl ml-1'>스택 : 스프링부트, 레디스, Mysql</h3>
+        </hgroup>
+      </article>
+      <article className='h-[100vh] flex2 relative bg-blue-300' onMouseEnter={() => onHover(2)}>
+        <span className='absolute left-[10%] top-[10%] text-7xl font-bold text-neutral-400'>P. 3</span>
+        <hgroup className='flex flex-col gap-5 font-semibold'>
+          <h1 className='text-7xl font-bold tracking-wide'>간단 공유</h1>
+          <span className='text-2xl mt-2 mb-5 ml-1'>간단한 파일 공유</span>
+          <h2 className='text-xl ml-1'>업무 : 백엔드 개발</h2>
+          <h3 className='text-xl ml-1'>기간 : 2023.02.20 ~ 2024.02.26</h3>
+          <h3 className='text-xl ml-1'>규모 : 40명</h3>
+          <h3 className='text-xl ml-1'>스택 : 스프링부트, 레디스, Mysql</h3>
+        </hgroup>
+      </article>
+    </div>
+  );
+};
 
 const ProjectPage = () => {
   const [item, setItem] = useState(0);
-
-  const handleHover = (item: number) => {
-    setItem(-item * 600);
-  };
+  const handleHover = (item: number) => setItem(-item * 600);
 
   return (
-    <div className='bg-[#F3EFE7] flex flex-col'>
-      <div className='fixed left-0 w-[600px] h-[100vh] overflow-hidden z-10 shadow-[rgba(0,0,15,0.5)_10px_5px_20px_0px]'>
-        <motion.div className='w-full h-full' transition={{ duration: 0.6, ease: 'easeInOut' }} animate={{ x: item }}>
-          <div className='absolute w-full h-full flex items-center justify-center bg-white'>
-            <Image src='/khnp.svg' alt='project' width={300} height={300} className='h-auto' />
-          </div>
-          <div className='absolute ml-[600px] w-full h-full flex items-center justify-center bg-[#FFE2E2]'>
-            <Image src='/our-memory.svg' alt='project' width={300} height={300} className='h-auto' />
-          </div>
-          <div className='absolute ml-[1200px] w-full h-full flex items-center justify-center bg-blue-100'>
-            <Image src='/cloud-storage.png' alt='project' width={300} height={300} className='h-auto' />
-          </div>
-        </motion.div>
-      </div>
-      <div className='w-full pl-[600px]'>
-        <div
-          className='w-full h-[1000px] bg-[#F3EFE7] flex items-center justify-center'
-          onMouseEnter={() => handleHover(0)}
-        >
-          <hgroup className='space-y-5'>
-            <h1 className='text-6xl font-bold'>한수원 ERP 고도화</h1>
-            <h2 className='text-2xl'>한국수력원자력 ERP 고도화 프로젝트</h2>
-            <h3 className='text-xl'>기간 : 2023.02.20 ~ 2024.02.26</h3>
-            <h3 className='text-xl'>규모 : 120명</h3>
-            <h3 className='text-xl'>스택 : 넥사크로, xUP, Oracle</h3>
-          </hgroup>
-        </div>
-        <div
-          className='w-full h-[1000px] bg-[#8785A2] flex items-center justify-center'
-          onMouseEnter={() => handleHover(1)}
-        >
-          <hgroup className='space-y-5'>
-            <h1 className='text-6xl font-bold'>우만시</h1>
-            <h2 className='text-2xl'>우리가 만난 시간 앱</h2>
-            <h3 className='text-xl'>기간 : 2023.02.20 ~ 2024.02.26</h3>
-            <h3 className='text-xl'>규모 : 4명</h3>
-            <h3 className='text-xl'>스택 : 스프링부트, 레디스, Mysql</h3>
-            <button>살펴보기</button>
-          </hgroup>
-        </div>
-        <div className='w-full h-[1000px] bg-blue-300' onMouseEnter={() => handleHover(2)}>
-          aas
-        </div>
-      </div>
-    </div>
+    <main className='text-neutral-700'>
+      <LeftElement item={item} />
+      <RightElement onHover={handleHover} />
+    </main>
   );
 };
 export default ProjectPage;

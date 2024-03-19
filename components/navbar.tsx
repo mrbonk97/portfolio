@@ -7,45 +7,46 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div
-      className={`fixed right-8 top-8 h-16 bg-[#FF3B00] text-lg lg:text-2xl gap-7 md:gap-10 lg:gap-20  ${
+      className={`fixed right-8 top-8 h-16 bg-[#FF3B00] text-lg lg:text-2xl gap-7 md:gap-10 lg:gap-20 z-20 ${
         isOpen ? 'w-[300px] lg:w-[450px] duration-500' : 'w-16 duration-500'
       } items-center
       justify-start rounded-sm flex overflow-hidden`}
       onClick={() => setIsOpen((cur) => !cur)}
     >
-      <button className='hover:opacity-70 duration-200'>
-        <Link
-          href='/project'
-          className={`font-bold  nt text-[#F3EFE7] ${
-            isOpen ? 'duration-500 ml-5 opacity-100 delay-100' : 'duration-200 ml-10 opacity-0'
-          }`}
-        >
-          프로젝트
-        </Link>
-      </button>
-      <button className='hover:opacity-70 duration-200'>
-        <Link
-          href='/about-me'
-          className={`font-bold  nt2 text-[#F3EFE7] ${
-            isOpen ? 'duration-1000 opacity-100 hover:opacity-70 delay-100' : 'duration-200 opacity-0'
-          }`}
-        >
-          소개
-        </Link>
-      </button>
-      <button className='hover:opacity-70 duration-200'>
-        <Link
-          href='/contact'
-          className={`font-bold nt2 text-[#F3EFE7] ${
-            isOpen ? 'duration-1000 opacity-100 hover:opacity-70 delay-150' : 'duration-200 opacity-0'
-          }`}
-        >
-          연락
-        </Link>
-      </button>
+      <Link
+        href='/project'
+        className={`font-bold  nt text-[#F3EFE7] hover:underline underline-offset-8
+          ${isOpen ? 'duration-500 ml-5 opacity-100 delay-100' : 'duration-200 ml-10 opacity-0'}
+          ${pathname === '/project' && 'underline'}
+          `}
+      >
+        프로젝트
+      </Link>
+
+      <Link
+        href='/about-me'
+        className={`font-bold  nt2 text-[#F3EFE7] hover:underline underline-offset-8
+          ${isOpen ? 'duration-1000 opacity-100 delay-100' : 'duration-200 opacity-0'}
+          ${pathname === '/about-me' && 'underline'}
+          `}
+      >
+        소개
+      </Link>
+
+      <Link
+        href='/contact'
+        className={`font-bold nt2 text-[#F3EFE7] hover:underline underline-offset-8
+          ${isOpen ? 'duration-1000 opacity-100 delay-150' : 'duration-200 opacity-0'}
+          ${pathname === '/contact' && 'underline'}
+          `}
+      >
+        연락
+      </Link>
+
       {/*  */}
       <div className='fixed right-11 top-13 h-10 w-10 overflow-hidden cursor-pointer'>
         <div
